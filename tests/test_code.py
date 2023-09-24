@@ -1,5 +1,5 @@
-import unittest
 from code.code import add_two_numbers
+import unittest
 
 
 class TestAdd(unittest.TestCase):
