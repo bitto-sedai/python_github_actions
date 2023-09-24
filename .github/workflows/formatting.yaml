@@ -23,12 +23,13 @@ jobs:
       - name: Update PYTHONPATH
         run: |
           echo "export PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
-      - name: Run Formatter
+      - name: Run Formatter Check
+        run: |
+          black --check .
+      - name: Commit Formatted Code If Needed
+        if: failure()
         run: |
           black .
-      - name: Commit Formatted Code
-        if: ${{ steps.format.outputs.changed }}
-        run: |
           git config --local user.name "GitHub Actions"
           git config --local user.email "action@github.com"
           git add .
