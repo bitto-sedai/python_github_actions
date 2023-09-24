@@ -1,4 +1,4 @@
-name: 'Type Checking'
+name: 'Formatting'
 on:
   pull_request:
     branches:
@@ -23,7 +23,14 @@ jobs:
       - name: Update PYTHONPATH
         run: |
           echo "export PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
-      - name: Run Type Checker
+      - name: Run Formatter
         run: |
-            python -m mypy --config-file=pyproject.toml ./src
-            python -m mypy --config-file=pyproject.toml ./tests
+          black .
+      - name: Commit Formatted Code
+        if: ${{ steps.format.outputs.changed }}
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "action@github.com"
+          git add .
+          git commit -m "Format code"
+          git push
