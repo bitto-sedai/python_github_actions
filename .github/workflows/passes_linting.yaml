@@ -1,4 +1,4 @@
-name: 'Run Tests'
+name: 'Run Linter'
 on:
   push:
     branches:
@@ -26,6 +26,7 @@ jobs:
       - name: Update PYTHONPATH
         run: |
           echo "export PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
-      - name: Run tests
+      - name: Run Linting
         run: |
-            python -m unittest discover -s tests -p "test_*.py"
+            python -m pylint --fail-under=9 --rcfile=pyproject.toml ./src
+            python -m pylint --fail-under=9 --rcfile=pyproject.toml ./tests
