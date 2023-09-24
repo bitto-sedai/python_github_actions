@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 jobs:
-  test:
+  format:
     runs-on: ubuntu-latest
     strategy:
       matrix:
