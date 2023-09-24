@@ -1,4 +1,4 @@
-name: 'Run Tests'
+name: 'Type Checking'
 on:
   push:
     branches:
@@ -28,4 +28,5 @@ jobs:
           echo "export PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
       - name: Run tests
         run: |
-            python -m unittest discover -s tests -p "test_*.py"
+            python -m mypy --config-file=pyproject.toml ./src
+            python -m mypy --config-file=pyproject.toml ./tests
