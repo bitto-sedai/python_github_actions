@@ -38,7 +38,7 @@ jobs:
         continue-on-error: true
         run: |
           black --check .
-      - name: Commit Formatted Code If Needed
+      - name: Commit if required
         if: steps.format_check.outcome == 'failure' || steps.import_sort_check.outcome == 'failure'
         run: |
           black .
