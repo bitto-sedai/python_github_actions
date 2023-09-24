@@ -29,10 +29,12 @@ jobs:
         run: |
           echo "export PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
       - name: Run Formatter Check
+        id: format_check
+        continue-on-error: true
         run: |
           black --check .
       - name: Commit Formatted Code If Needed
-        if: failure()
+        if: steps.format_check.outcome == 'failure'
         run: |
           black .
           git config --local user.name "GitHub Actions"
