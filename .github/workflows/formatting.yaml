@@ -28,17 +28,23 @@ jobs:
       - name: Update PYTHONPATH
         run: |
           echo "export PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
-      - name: Run Formatter Check
+      - name: Run format check
         id: format_check
         continue-on-error: true
         run: |
           black --check .
+      - name: Run import sort check
+        id: import_sort_check
+        continue-on-error: true
+        run: |
+          black --check .
       - name: Commit Formatted Code If Needed
-        if: steps.format_check.outcome == 'failure'
+        if: steps.format_check.outcome == 'failure' || steps.import_sort_check.outcome == 'failure'
         run: |
           black .
+          isort .
           git config --local user.name "GitHub Actions"
           git config --local user.email "action@github.com"
           git add .
-          git commit -m "Format code"
+          git commit -m "Format and sort imports"
           git push
