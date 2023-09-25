@@ -34,7 +34,7 @@ jobs:
             python -m coverage report --rcfile=pyproject.toml >> coverage_report.txt
       - name: Generate coverage report summary
         run: |
-            printf '```\n$(tail -1000 coverage_report.txt)\n```' > "coverage_report_final.txt"
+            echo -e "\`\`\`\n$(tail -1000 coverage_report.txt)\n\`\`\`" > coverage_report_final.txt
       - name: Log coverage percentage
         uses: thollander/actions-comment-pull-request@v2
         with:
