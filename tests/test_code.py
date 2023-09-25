@@ -1,7 +1,5 @@
 import unittest
-import code
-print(code)
-from code.code import add_two_numbers
+from ofa.code import add_two_numbers
 
 
 class TestAdd(unittest.TestCase):
