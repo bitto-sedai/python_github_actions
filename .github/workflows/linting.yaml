@@ -25,9 +25,12 @@ jobs:
       - name: Update PYTHONPATH
         run: |
           echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
-      - name: Run Linter
+      - name: Run Linter for src
         run: |
             python -m pylint --fail-under=9 --rcfile=pyproject.toml ./src > pylint_report.txt
+      - name: Run Linter for tests
+        if: ${{ success() || failure() }}
+        run: |
             python -m pylint --fail-under=9 --rcfile=pyproject.toml ./tests >> pylint_report.txt
       - name: Generate linter report
         if: ${{ success() || failure() }}

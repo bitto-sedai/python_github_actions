@@ -27,8 +27,7 @@ jobs:
           echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
       - name: Run Type Checker
         run: |
-            python -m mypy --config-file=pyproject.toml ./src > type_checker_report.txt
-            python -m mypy --config-file=pyproject.toml ./tests >> type_checker_report.txt
+            python -m mypy --config-file=pyproject.toml . > type_checker_report.txt
       - name: Generate type checker report
         if: ${{ success() || failure() }}
         run: |
