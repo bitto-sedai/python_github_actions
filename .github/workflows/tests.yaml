@@ -31,4 +31,4 @@ jobs:
             python -m coverage report --rcfile=pyproject.toml
       - name: Log coverage percentage
         run: |
-          echo "The code coverage is ${{ steps.tests_and_coverage.outputs.percentage }}%"
+          echo "The code coverage is $(coverage report --rcfile=pyproject.toml | grep total | cut -d'%' -f1)%"
