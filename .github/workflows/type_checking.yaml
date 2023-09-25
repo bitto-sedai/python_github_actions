@@ -31,6 +31,7 @@ jobs:
             python -m mypy --config-file=pyproject.toml ./src > type_checker_report.txt
             python -m mypy --config-file=pyproject.toml ./tests >> type_checker_report.txt
       - name: Generate type checker report
+        if: ${{ success() }} || ${{ failure() }}
         run: |
             echo -e "Type Checker Report:\n\`\`\`\n$(tail -1000 type_checker_report.txt)\n\`\`\`" > type_checker_report_final.txt
       - name: Log type checker report
