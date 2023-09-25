@@ -22,7 +22,7 @@ jobs:
           if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
       - name: Update PYTHONPATH
         run: |
-          echo "export PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
+          echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
       - name: Run Linter
         run: |
             python -m pylint --fail-under=9 --rcfile=pyproject.toml ./src
