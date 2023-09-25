@@ -31,7 +31,7 @@ jobs:
             python -m pylint --fail-under=9 --rcfile=pyproject.toml ./src > pylint_report.txt
             python -m pylint --fail-under=9 --rcfile=pyproject.toml ./tests >> pylint_report.txt
       - name: Generate linter report
-        if: ${{ success() }} || ${{ failure() }}
+        if: ${{ success() || failure() }}
         run: |
             echo -e "Linter Report:\n\`\`\`\n$(tail -1000 pylint_report.txt)\n\`\`\`" > pylint_report_final.txt
       - name: Log linter report
