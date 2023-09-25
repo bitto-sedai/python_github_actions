@@ -16,7 +16,7 @@ exclude = "gunicorn"
 ignore_missing_imports = true
 
 [tool.coverage.run]
-source = ["src/code"]
+source = ["src"]
 omit = ["tests/*"]
 
 [tool.coverage.report]

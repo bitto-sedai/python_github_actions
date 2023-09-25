@@ -1,4 +1,6 @@
 import unittest
+import sys
+print(sys.path)
 from ofa.code import add_two_numbers
 
 
