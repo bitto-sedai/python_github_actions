@@ -1,6 +1,8 @@
 import unittest
 import sys
+import os
 print(sys.path)
+print(os.environ['PYTHONPATH'])
 from ofa.code import add_two_numbers
 
 
