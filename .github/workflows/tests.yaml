@@ -35,7 +35,7 @@ jobs:
       - name: Generate coverage report summary
         run: |
             echo "```" > coverage_report_final.txt
-            cat coverage_report.txt >> coverage_report_final.txt
+            echo "hello" >> coverage_report_final.txt
             echo "```" >> coverage_report_final.txt
             cat coverage_report_final.txt
       - name: Log coverage percentage
