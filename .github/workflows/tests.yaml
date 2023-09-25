@@ -26,11 +26,13 @@ jobs:
         run: |
           echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
       - name: Run Tests
-        id: tests_and_coverage
-        continue-on-error: true
         run: |
             python -m coverage run -m unittest discover -s tests -p "test_*.py"
+      - name: Generate coverage report
+        run: |
             python -m coverage report --rcfile=pyproject.toml >> coverage_report.txt
+      - name: Generate coverage report summary
+        run: |
             echo "$(tail -1  coverage_report.txt)" >> coverage_report_final.txt
       - name: Log coverage percentage
         uses: thollander/actions-comment-pull-request@v2
