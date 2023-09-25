@@ -34,6 +34,7 @@ jobs:
         run: |
             echo -e "Linter Report:\n\`\`\`\n$(tail -1000 pylint_report.txt)\n\`\`\`" > pylint_report_final.txt
       - name: Log linter report
+        if: ${{ success() || failure() }}
         uses: thollander/actions-comment-pull-request@v2
         with:
           filePath: ./pylint_report_final.txt

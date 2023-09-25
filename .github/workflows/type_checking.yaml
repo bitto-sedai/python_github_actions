@@ -34,6 +34,7 @@ jobs:
         run: |
             echo -e "Type Checker Report:\n\`\`\`\n$(tail -1000 type_checker_report.txt)\n\`\`\`" > type_checker_report_final.txt
       - name: Log type checker report
+        if: ${{ success() || failure() }}
         uses: thollander/actions-comment-pull-request@v2
         with:
           filePath: ./type_checker_report_final.txt

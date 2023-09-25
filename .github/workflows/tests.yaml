@@ -36,6 +36,7 @@ jobs:
         run: |
             echo -e "Coverage Report:\n\`\`\`\n$(tail -1000 coverage_report.txt)\n\`\`\`" > coverage_report_final.txt
       - name: Log coverage percentage
+        if: ${{ success() || failure() }}
         uses: thollander/actions-comment-pull-request@v2
         with:
           filePath: ./coverage_report_final.txt
