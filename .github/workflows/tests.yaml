@@ -29,10 +29,10 @@ jobs:
         run: |
             python -m coverage run -m unittest discover -s tests -p "test_*.py"
       - name: Generate coverage report
-        continue-on-error: true
         run: |
             python -m coverage report --rcfile=pyproject.toml >> coverage_report.txt
       - name: Generate coverage report summary
+        if: ${{ success() || failure() }}
         run: |
             echo -e "Coverage Report:\n\`\`\`\n$(tail -1000 coverage_report.txt)\n\`\`\`" > coverage_report_final.txt
       - name: Log coverage percentage
