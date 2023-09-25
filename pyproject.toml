@@ -14,3 +14,10 @@ disable = "too-few-public-methods"
 strict = true
 exclude = "gunicorn"
 ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["src/code"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+fail_under = 80
