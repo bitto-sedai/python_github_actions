@@ -31,6 +31,8 @@ jobs:
         run: |
             python -m coverage run -m unittest discover -s tests -p "test_*.py"
             python -m coverage report --rcfile=pyproject.toml >> coverage_report.txt
+            cat coverage_report.txt
+            echo "$(tail -1  coverage_report.txt)" > coverage_report.txt
       - name: Log coverage percentage
         uses: thollander/actions-comment-pull-request@v2
         with:
