@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 print(sys.path)
-print(os.environ['PYTHONPATH'])
+print(os.environ.get('PYTHONPATH'))
 from ofa.code import add_two_numbers
 
 
