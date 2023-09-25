@@ -30,11 +30,10 @@ jobs:
         continue-on-error: true
         run: |
             python -m coverage run -m unittest discover -s tests -p "test_*.py"
-            python -m coverage report --rcfile=pyproject.toml >> coverage_report.txt
-            echo "$(tail -1  coverage_report.txt)" > coverage_report.txt
+            python -m coverage report --rcfile=pyproject.toml > coverage_report.txt
+            echo "$(tail -1  coverage_report.txt)" > coverage_report_result.txt
       - name: Log coverage percentage
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: ./coverage_report.txt
+          filePath: ./coverage_report_result.txt
           comment_tag: coverage
-
