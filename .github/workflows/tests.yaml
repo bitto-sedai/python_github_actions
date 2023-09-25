@@ -40,3 +40,4 @@ jobs:
         with:
           filePath: ./coverage_report_final.txt
           comment_tag: coverage
+          mode: recreate
