@@ -37,6 +37,7 @@ jobs:
             echo "```" > coverage_report_final.txt
             cat coverage_report.txt >> coverage_report_final.txt
             echo "```" >> coverage_report_final.txt
+            cat coverage_report_final.txt
       - name: Log coverage percentage
         uses: thollander/actions-comment-pull-request@v2
         with:
