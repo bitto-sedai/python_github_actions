@@ -32,6 +32,7 @@ jobs:
         run: |
             python -m coverage report --rcfile=pyproject.toml >> coverage_report.txt
       - name: Generate coverage report summary
+        continue-on-error: true
         run: |
             echo "$(tail -1  coverage_report.txt)" >> coverage_report_final.txt
       - name: Log coverage percentage
