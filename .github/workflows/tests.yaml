@@ -25,4 +25,8 @@ jobs:
           echo "export PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
       - name: Run Tests
         run: |
-            python -m unittest discover -s tests -p "test_*.py"
+            coverage run -m unittest discover -s tests -p "test_*.py"
+            coverage report --rcfile=pyproject.toml
+      - name: Log coverage percentage
+        run: |
+          echo "The code coverage is ${{ steps.coverage.outputs.percentage }}%"
